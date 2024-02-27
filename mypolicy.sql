@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 02:29 PM
+-- Generation Time: Feb 27, 2024 at 01:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,15 +30,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `memb_mst` (
   `sno` int(11) NOT NULL,
   `firstname` varchar(30) NOT NULL,
-  `lastname` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` text NOT NULL,
   `dob` date NOT NULL,
   `gender` varchar(30) NOT NULL,
   `phoneno` bigint(50) NOT NULL,
-  `altphoneno` bigint(50) NOT NULL,
   `maritalstatus` varchar(30) NOT NULL,
   `doa` date NOT NULL,
+  `id` int(30) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -46,15 +45,9 @@ CREATE TABLE `memb_mst` (
 -- Dumping data for table `memb_mst`
 --
 
-INSERT INTO `memb_mst` (`sno`, `firstname`, `lastname`, `email`, `address`, `dob`, `gender`, `phoneno`, `altphoneno`, `maritalstatus`, `doa`, `date`) VALUES
-(24, 'rohan', 'patra', 'sp3@gmail.com', 'bbsr', '2024-02-09', 'male', 8328944766, 0, 'married', '2024-02-22', '2024-02-20 15:46:19'),
-(25, 'milan', 'patra', 'sp3@gmail.com', 'bbsr', '2024-02-10', 'male', 8328944766, 0, 'married', '2024-02-22', '2024-02-20 15:46:40'),
-(30, 'sohan', 'patra', 'sp3@gmail.com2', 'bbsr', '2024-02-02', 'male', 8328944766, 0, 'unmarried', '0000-00-00', '2024-02-20 18:44:54'),
-(31, 'rohan', 'patra', 'sp3@gmail.com', 'bbsr', '2024-01-30', 'male', 3346547578, 0, 'unmarried', '0000-00-00', '2024-02-20 18:45:14'),
-(33, 'sohan patra', '', 'sohanpatra3@gmail.com', 'bbsr', '2024-01-31', 'male', 8732676789, 0, 'unmarried', '0000-00-00', '2024-02-21 11:41:33'),
-(34, 'sohan patra1', '', 'sohanpatra3@gmail.com', 'bbsr', '2024-02-10', 'male', 8563455679, 0, 'married', '2024-02-20', '2024-02-21 11:59:51'),
-(35, 'sohan patra2', '', 'sp3@gmail.com', 'bbsr', '2024-02-11', 'male', 3455689864, 0, 'unmarried', '0000-00-00', '2024-02-21 12:00:11'),
-(36, 'Soumya', '', 'sp3@gmail.com', 'bbsr', '2024-02-22', 'male', 0, 0, 'married', '2024-02-22', '2024-02-22 15:03:36');
+INSERT INTO `memb_mst` (`sno`, `firstname`, `email`, `address`, `dob`, `gender`, `phoneno`, `maritalstatus`, `doa`, `id`, `date`) VALUES
+(82, 'Sohan Patraa', 'sohanpatra3@gmail.com', 'bbsr', '2024-02-07', 'male', 8328944766, 'unmarried', '0000-00-00', 1, '2024-02-24 17:21:03'),
+(89, 'milan', 'sp3@gmail.com', 'bbsr', '1998-07-09', 'male', 8432235645, 'married', '2024-01-30', 2, '2024-02-26 14:23:22');
 
 -- --------------------------------------------------------
 
@@ -75,6 +68,7 @@ CREATE TABLE `plc_mst` (
   `nomineeName` varchar(30) NOT NULL,
   `nomineeRelation` varchar(30) NOT NULL,
   `nomineeDob` date NOT NULL,
+  `id` int(30) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -82,11 +76,12 @@ CREATE TABLE `plc_mst` (
 -- Dumping data for table `plc_mst`
 --
 
-INSERT INTO `plc_mst` (`sno`, `name`, `policyNumber`, `policyDate`, `policyAmount`, `policyMaturityDate`, `policyTerm`, `policyPremium`, `premiumTime`, `nomineeName`, `nomineeRelation`, `nomineeDob`, `date`) VALUES
-(1, '33-sohan patra', 123456789, '2024-02-01', 10000, '2027-07-07', '3 year', 1000, 'monthly', 'milan', 'son', '2024-02-02', '2024-02-21 16:41:51'),
-(3, '30-sohan', 2147483647, '2024-02-02', 500000, '2028-11-22', '4 year', 2000, 'monthly', 'milan', 'son', '2024-02-23', '2024-02-21 18:19:05'),
-(4, '24-rohan', 2147483647, '2024-02-08', 1000000, '2030-06-20', '6 year', 10000, 'monthly', 'milan', 'son', '2024-02-29', '2024-02-21 18:22:06'),
-(5, '31-rohan', 3456, '0000-00-00', 0, '0000-00-00', '', 0, '', '', '', '0000-00-00', '2024-02-22 12:28:39');
+INSERT INTO `plc_mst` (`sno`, `name`, `policyNumber`, `policyDate`, `policyAmount`, `policyMaturityDate`, `policyTerm`, `policyPremium`, `premiumTime`, `nomineeName`, `nomineeRelation`, `nomineeDob`, `id`, `date`) VALUES
+(9, '82-sohan', 123456789, '2024-02-24', 100000, '2028-02-24', '4 year', 1000, 'monthly', 'milan', 'son', '2016-07-07', 1, '2024-02-24 17:36:26'),
+(11, '88-sohan', 987654321, '2024-02-26', 500000, '2030-02-26', '6 year', 3000, 'monthly', 'milan', 'son', '2014-07-26', 1, '2024-02-26 12:01:01'),
+(13, '82-sohan patra', 2147483647, '2024-02-26', 500000, '2030-02-26', '6 year', 3000, 'monthly', 'milan', 'son', '2018-07-26', 1, '2024-02-26 12:45:32'),
+(14, '89-milan', 1234456778, '2024-02-26', 10000, '2028-02-26', '4 year', 1000, 'monthly', 'milan', 'daughter', '2023-12-08', 2, '2024-02-26 14:24:27'),
+(16, '88-sohan', 2147483647, '2023-03-27', 900000, '2028-03-27', '5 years', 5000, 'monthly', 'milan', 'son', '2024-02-01', 1, '2024-02-27 10:37:46');
 
 -- --------------------------------------------------------
 
@@ -139,19 +134,19 @@ ALTER TABLE `user_mst`
 -- AUTO_INCREMENT for table `memb_mst`
 --
 ALTER TABLE `memb_mst`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `plc_mst`
 --
 ALTER TABLE `plc_mst`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user_mst`
 --
 ALTER TABLE `user_mst`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
