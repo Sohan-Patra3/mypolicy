@@ -143,43 +143,44 @@ $sno = base64_decode(urldecode($sno));
                 </div>
             </nav>
             <div class="container">
-                    <?php
-                    $snoi= $_GET['snoi'];
-                    $snoi = base64_decode(urldecode($snoi));
-                    $sql = "SELECT * FROM `plc_mst` WHERE sno = $snoi";
-                    $result = mysqli_query($conn , $sql);
-                    while($row = mysqli_fetch_assoc($result)){
-                        $name = $row['name'];
-                        $policyNumber = $row['policyNumber'];
-                        $policyAmount = $row['policyAmount'];
-                        $policyDate = $row['policyDate'];
-                        $policyMaturityDate = $row['policyMaturityDate'];
-                        $policyTerm = $row['policyTerm'];
-                        $policyPremium = $row['policyPremium'];
-                        $premiumTime = $row['premiumTime'];
-                        $nomineeName = $row['nomineeName'];
-                        $nomineeRelation = $row['nomineeRelation'];
-                        $nomineeDob = $row['nomineeDob'];
-                        $namei = strtoupper($name);
-                        echo'
-                        <div class="p-5 mb-4 bg-body-tertiary rounded-3 my-5">
-                        <div class="container-fluid py-5">
-                        <h1 class="display-5 fw-bold">'.$namei.'</h1>
-                        <p class="col-md-8 fs-4">Policy Number='.$policyNumber.'</p>
-                        <p class="col-md-8 fs-4">Policy Amount='.$policyAmount.'</p>
-                        <p class="col-md-8 fs-4">Policy Date='.$policyDate.'</p>
-                        <p class="col-md-8 fs-4">Policy Maturity Date='.$policyMaturityDate.'</p>
-                        <p class="col-md-8 fs-4">Policy Term='.$policyTerm.'</p>
-                        <p class="col-md-8 fs-4">Policy Premium='.$policyPremium.'</p>
-                        <p class="col-md-8 fs-4">Premium Time='.$premiumTime.'</p>
-                        <p class="col-md-8 fs-4">Nominee Name='.$nomineeName.'</p>
-                        <p class="col-md-8 fs-4">Relation With Nominee='.$nomineeRelation.'</p>
-                        <p class="col-md-8 fs-4">Nominee DOB='.$nomineeDob.'</p>
-                    </div>
-                    </div>';
-                    }
-                    ?>
-                
+                <?php
+                $snoi = $_GET['snoi'];
+                $snoi = base64_decode(urldecode($snoi));
+                $sql = "SELECT * FROM `plc_mst` WHERE sno = $snoi";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $name = $row['name'];
+                    $policyNumber = $row['policyNumber'];
+                    $policyAmount = $row['policyAmount'];
+                    $policyDate = $row['policyDate'];
+                    $policyMaturityDate = $row['policyMaturityDate'];
+                    $policyTerm = $row['policyTerm'];
+                    $policyPremium = $row['policyPremium'];
+                    $premiumTime = $row['premiumTime'];
+                    $nomineeName = $row['nomineeName'];
+                    $nomineeRelation = $row['nomineeRelation'];
+                    $nomineeDob = $row['nomineeDob'];
+                    $namei = strtoupper($name);
+                    echo '
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3 my-5">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">' . $namei . '</h1>
+            <p class="col-md-8 fs-4">Policy Number=' . $policyNumber . '</p>
+            <p class="col-md-8 fs-4">Policy Amount=' . $policyAmount . '</p>
+            <p class="col-md-8 fs-4">Policy Date=' . $policyDate . '</p>
+            <p class="col-md-8 fs-4">Policy Maturity Date=' . $policyMaturityDate . '</p>
+            <p class="col-md-8 fs-4">Policy Term=' . $policyTerm . '</p>
+            <p class="col-md-8 fs-4">Policy Premium=' . $policyPremium . '</p>
+            <p class="col-md-8 fs-4">Premium Time=' . $premiumTime . '</p>
+            <p class="col-md-8 fs-4">Nominee Name=' . $nomineeName . '</p>
+            <p class="col-md-8 fs-4">Relation With Nominee=' . $nomineeRelation . '</p>
+            <p class="col-md-8 fs-4">Nominee DOB=' . $nomineeDob . '</p>
+            <button class="btn btn-danger delete my-1" data-id="' . $snoi . '">Delete</button>
+        </div>
+    </div>';
+                }
+                ?>
+
             </div>
         </div>
     </div>
@@ -201,8 +202,31 @@ $sno = base64_decode(urldecode($sno));
             $('.sidebar').removeClass('active');
         })
     </script>
-<hr>
-<?php include 'partials/_footer.php' ?>
+    <script>
+        $(document).ready(function() {
+            $(".delete").click(function() {
+                var id = $(this).data("id");
+                var element = $(this);
+                $.ajax({
+                    url: 'delete1.php',
+                    method: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        if (response == 1) {
+                            element.closest('.p-5').remove();
+                        } else {
+                            alert('Failed to delete record');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <hr>
+    <?php include 'partials/_footer.php' ?>
 </body>
 
 </html>
