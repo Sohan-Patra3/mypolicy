@@ -217,7 +217,7 @@ $sno = base64_decode(urldecode($sno));
             $result = mysqli_query($conn, $sql);
             ?>
             <div class="container bodyDiv my-4">
-                <form class="needs-validation" novalidate="" action="/mypolicy/policy.php?sno=<?php echo $sno ?>" method="post">
+                <form class="needs-validation" novalidate="" action="/mypolicy/policy.php?sno=<?php echo  $encrypt_1 = urlencode(base64_encode($sno)); ?>" method="post">
                     <div class="col-md-12 ">
                         <label for="name">Name</label>
                         <select class="form-control form-control-sm" id="name" name="name" required>
