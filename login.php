@@ -2,35 +2,38 @@
 $login = false;
 $showError = false;
 
-if($_SERVER["REQUEST_METHOD"]=='POST'){
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $showAlert = false;
     include 'partials/_dbconnect.php';
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-
     $sql = "SELECT * FROM user_mst WHERE username = '$username'";
-    $result = mysqli_query($conn , $sql);
+    $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
-    if($num==1){
-        while($row = mysqli_fetch_assoc($result)){
-            if($password==$row['password']){
-                $login=true;
+    if ($num == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($password == $row['password']) {
+                $sno = $row['sno'];
+                $login = true;
                 session_start();
-                $_SESSION['loggedin']=true;
+                $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                header("location: /mypolicy/index.php");
-            }
-            else{
+                $_SESSION['sno'] = $sno;
+                $encrypt_1 = urlencode(base64_encode($sno));
+                // echo $encrypt_1;  // Remove this line
+                header("location: /mypolicy/index.php?sno=$encrypt_1");
+                exit; // Make sure to exit after the header redirect
+            } else {
                 $showError = "invalid username or password";
             }
         }
-    }
-    else{
+    } else {
         $showError = "invalid username or password";
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
