@@ -69,7 +69,6 @@ $sno = base64_decode(urldecode($sno));
 </head>
 
 <body>
-
     <div class="main-container d-flex">
         <div class="sidebar" id="side_nav">
             <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
@@ -161,6 +160,7 @@ $sno = base64_decode(urldecode($sno));
                     $nomineeRelation = $row['nomineeRelation'];
                     $nomineeDob = $row['nomineeDob'];
                     $namei = strtoupper($name);
+                   $id = urlencode(base64_encode($row['sno']));
                     echo '
     <div class="p-5 mb-4 bg-body-tertiary rounded-3 my-5">
         <div class="container-fluid py-5">
@@ -175,16 +175,16 @@ $sno = base64_decode(urldecode($sno));
             <p class="col-md-8 fs-4">Nominee Name=' . $nomineeName . '</p>
             <p class="col-md-8 fs-4">Relation With Nominee=' . $nomineeRelation . '</p>
             <p class="col-md-8 fs-4">Nominee DOB=' . $nomineeDob . '</p>
+            <!-- Inside the while loop where policy details are displayed -->
+            <a class="btn  btn-primary edit" href="/mypolicy/edit_policy.php?snoi='.$id.'&sno='.$sno.'">Edit</a>
             <button class="btn btn-danger delete my-1" data-id="' . $snoi . '">Delete</button>
         </div>
-    </div>';
+    </div>';    
                 }
                 ?>
-
             </div>
         </div>
     </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -224,6 +224,7 @@ $sno = base64_decode(urldecode($sno));
             });
         });
     </script>
+  
 
     <hr>
     <?php include 'partials/_footer.php' ?>
