@@ -268,7 +268,10 @@ $sno = base64_decode(urldecode($sno));
                 $policyDateToday = substr($policyDate, 8);
                 $nameUpper = strtoupper($name);
                 $dateToday = date("20y-m-d");
-                if ($date === $policyDateToday) {
+                $date1=date("20y-m-d");
+                $policyDate1 = $row['policyDate'];
+
+                if ($date === $policyDateToday && $date1 != $policyDate1) {
                     echo '<div class="col-md-6 my-2 container">
                     <div class="h-100 p-5 bg-body-tertiary border rounded-3">
                       <h2>'.$nameUpper.'</h2>
@@ -301,6 +304,7 @@ $sno = base64_decode(urldecode($sno));
             $('.sidebar').removeClass('active');
         })
     </script>
+    
     <hr>
     <?php include 'partials/_footer.php' ?>
 </body>
